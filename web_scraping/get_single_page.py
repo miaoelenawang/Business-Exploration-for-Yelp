@@ -33,18 +33,15 @@ def extract_single_page(url):
 		hl_inspect = re.sub(" ","",health_inspect).strip('\n')
 	except:
 		hl_inspect = None
-	try:
-		hours = tree.xpath('//table[@class="table table-simple hours-table"]')[0].text_content()
-		hours = [ii for ii in re.sub(" ","",hours).split('\n') if ii not in ['']]
-		hour = {hours[i]:hours[i+1] for i in range(0,len(hours)-2,2)}
-	except:
-		hour = {}
 	week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+	hours = {i : None for i in week}
+	hour = tree.xpath('//table[@class="table table-simple hours-table"]//tr')
+	hou = {i.xpath('th')[0].text_content().strip():i.xpath('td')[0].text_content().strip() for i in hour}
 	for wkday in week:
-		try: 
-			hour[wkday]
+		try:
+			hours.update({wkday:hou[wkday]})
 		except:
-			hour.update({wkday:None})  
+			hours.update({wkday:None}) 	
 	try:
 		more_info= tree.xpath('//div[@class="short-def-list"]')[0].text_content()
 		more_info= [ii for ii in re.sub(" ","",more_info).split('\n') if ii not in ['']]
@@ -70,7 +67,7 @@ def extract_single_page(url):
 	except:    
 		related3 = {'related'+str(i):None for i in range(3)}
 	Business = {"claimed status":claims,"health inspect":hl_inspect,"more information":more_info, 'latitude':latitude,'longitude':longitude}
-	Business.update(hour)  
+	Business.update(hours)  
 	Business.update(related3)  
 	return Business
 	
