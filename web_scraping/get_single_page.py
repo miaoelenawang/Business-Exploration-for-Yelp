@@ -134,7 +134,7 @@ def more_information(tree):
 								
 
 
-# In[71]:
+
 
 def conbine_dict(tree):
 	Dict = {};
