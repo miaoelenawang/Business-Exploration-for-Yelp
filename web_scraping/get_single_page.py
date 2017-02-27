@@ -12,10 +12,7 @@ import json
 #url = "https://www.yelp.com/biz/craftsman-and-wolves-the-den-san-francisco-2"
 
 
-# In[54]:
 
-#page = requests.get(url)
-#tree = lx.fromstring(page.content)
 
 
 # In[55]:
