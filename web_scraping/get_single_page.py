@@ -121,7 +121,7 @@ def open_hours(tree):
 
 
 
-def more_information(tre):
+def more_information(tree):
 	try:
 		more_info= tree.xpath('//div[@class="short-def-list"]')[0].text_content()
 		more_info= [ii for ii in re.sub(" ","",more_info).split('\n') if ii not in ['']]
