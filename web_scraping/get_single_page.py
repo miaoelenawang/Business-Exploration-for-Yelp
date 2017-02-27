@@ -119,7 +119,7 @@ def open_hours(tree):
 #hour
 
 
-# In[70]:
+
 
 def more_information(tree):
 	try:
