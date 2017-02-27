@@ -10,6 +10,7 @@ from yelp.oauth1_authenticator import Oauth1Authenticator
 # In[113]:
 
 import pandas as pd
+import requests
 import numpy as np
 import requests_cache
 requests_cache.install_cache('yelp_cache')
@@ -47,7 +48,7 @@ def basic_info(search_loc):
 
 # In[88]:
 #test the function
-[basic_info('san jose, CA')] + [basic_info('davis, CA')]
+# [basic_info('san jose, CA')] + [basic_info('davis, CA')]
 
 
 import lxml.html as lx
@@ -107,18 +108,18 @@ def business_info(search_term, search_loc, start_num):
 
 # In[415]:
 #test the function
-business_info('food', 'san jose, CA', str(1000))
+#business_info('food', 'san jose, CA', str(1000))
 
 # In[410]:
-max_page = 100
-business_pages = []
-for page in xrange(0, max_page):
-    start_num = page * 10
-    business_pages = business_pages + business_info('food', 'san jose, CA', str(start_num))
-business_pages
+#max_page = 100
+#business_pages = []
+#for page in xrange(0, max_page):
+#    start_num = page * 10
+#    business_pages = business_pages + business_info('food', 'san jose, CA', str(start_num))
+#business_pages
 
 
 # In[422]:
-business_pages_df = pd.DataFrame(business_pages)
-business_pages_df
+#business_pages_df = pd.DataFrame(business_pages)
+#business_pages_df
 
