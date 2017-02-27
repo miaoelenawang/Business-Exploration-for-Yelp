@@ -9,6 +9,13 @@ import lxml.html as lx
 import re
 import json
 
+#url = "https://www.yelp.com/biz/craftsman-and-wolves-the-den-san-francisco-2"
+
+
+# In[54]:
+
+#page = requests.get(url)
+#tree = lx.fromstring(page.content)
 
 
 # In[55]:
@@ -77,7 +84,7 @@ def claimed_status(tree):
 	except:
 		claims = "none"
 	return({"claimed status":claims})
-
+claimed_status(tree)
 
 
 # In[56]:
@@ -89,7 +96,7 @@ def health_inspection(tree):
 	except:
 		hl_inspect = "none"
 	return({"health inspect":hl_inspect})
-
+health_inspection(tree)
 
 
 # In[57]:
@@ -108,7 +115,7 @@ def open_hours(tree):
 		except:
 			hour.update({wkday:"none"})   
 	return(hour)
-
+open_hours(tree)
 #hour
 
 
@@ -123,7 +130,7 @@ def more_information(tree):
 	except:
 		more_info = {"more information":"none"}
 	return(more_info)
-
+more_information(tree)
 								
 
 
