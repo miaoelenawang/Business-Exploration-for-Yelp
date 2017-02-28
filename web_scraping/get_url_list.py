@@ -8,7 +8,7 @@ from yelp.oauth1_authenticator import Oauth1Authenticator
 
 
 # In[113]:
-
+from get_single_page import * # import function which is to extract single page's content
 import pandas as pd
 import requests
 import numpy as np
@@ -99,9 +99,11 @@ def business_info(search_term, search_loc, start_num):
         if len(tags) == 0:
             tag = None
         else:
-            tag = tags[0].text_content().strip()
+            tag = tags[0].text_content().strip()         
    
-        one_business = {'title':title, 'id':one_id,'url':url, 'rating':rating, 'review':review, 'price':price, 'tag':tag}
+        one_business = {'title':title, 'id':one_id,'url':url, 'rating':rating, 'review':review, 'price':price, 'tag':tag, 'area': search_loc}
+        pages = extract_single_page(url)
+        one_business.update(pages)
         many_business += [one_business]
     return many_business    
 
