@@ -54,14 +54,21 @@ def basic_info(search_loc):
 import lxml.html as lx
 
 # In[412]:
-
-def business_info(search_term, search_loc, start_num):
+def parse_html(search_term, search_loc, start_num = '0'):
     urlbase = 'https://www.yelp.com/search'
-    dataparams = {'find_desc':search_term, 'find_loc':search_loc, 'start':start_num }
+    dataparams = {'find_desc':search_term, 'l':search_loc, 'start':start_num }
     yelp_req = requests.get(urlbase, params = dataparams)
     yelp_html = yelp_req.text
     html = lx.fromstring(yelp_html)
-    
+    return html
+
+def search_num_pages(html):
+    num_p = html.xpath('//div[@class="search-pagination"]/div/div/div[@class="page-of-pages arrange_unit arrange_unit--fill"]')
+    num_pages = num_p[0].text_content().strip().split(' ')[-1]
+    return num_pages
+
+
+def business_info(html, search_loc):
     research_results = html.xpath('//div[@class="search-results-content"]/ul/li[@class="regular-search-result"]')
     
     many_business = []
@@ -108,20 +115,22 @@ def business_info(search_term, search_loc, start_num):
     return many_business    
 
 
-# In[415]:
-#test the function
-#business_info('food', 'san jose, CA', str(1000))
+def business_many_pages(search_term, search_loc, loc_state):
+    more_areas = areas_one_loc(search_term, search_loc, loc_state)
+    
+    areas_business = []
+    for area in more_areas:
+        html = parse_html(search_term, area)
+        num_pages = search_num_pages(html)
+        
+        one_area_business = business_info(html, area)
+        for page in xrange(1, int(num_pages)):
+            start_num = page * 10
+            html = parse_html(search_term, area, str(start_num))
+            one_area_business += business_info(html, area)
+        
+        areas_business += one_area_business
+    return areas_business
 
-# In[410]:
-#max_page = 100
-#business_pages = []
-#for page in xrange(0, max_page):
-#    start_num = page * 10
-#    business_pages = business_pages + business_info('food', 'san jose, CA', str(start_num))
-#business_pages
 
-
-# In[422]:
-#business_pages_df = pd.DataFrame(business_pages)
-#business_pages_df
 
