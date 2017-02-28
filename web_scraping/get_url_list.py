@@ -67,6 +67,15 @@ def search_num_pages(html):
     num_pages = num_p[0].text_content().strip().split(' ')[-1]
     return num_pages
 
+def areas_one_loc(search_term, search_loc, loc_state):
+    urlbase = 'https://www.yelp.com/search'
+    dataparams = {'find_desc':search_term, 'find_loc':search_loc}
+    yelp_req = requests.get(urlbase, params = dataparams)
+    yelp_html = yelp_req.text
+    html = lx.fromstring(yelp_html)
+    
+    more_areas = html.xpath('//ul[@class="more place-more"]/div[1]/div/div[@class="filter-group"]/ul[@class="column"]/li')
+    return ['p:' + loc_state + ':' + search_loc + '::' + place.text_content().strip().replace(' ', '_') for place in more_areas]
 
 def business_info(html, search_loc):
     research_results = html.xpath('//div[@class="search-results-content"]/ul/li[@class="regular-search-result"]')
