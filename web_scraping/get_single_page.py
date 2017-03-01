@@ -63,7 +63,7 @@ def extract_single_page(url):
 	try:
 		related = [i.find_class('js-analytics-click')[0].get('href').split('/')[2].split('?')[0] for i in li]
 		k = 0
-		for j in related[:2]:
+		for j in related:
 			related3.update({'related'+str(k):j}) 
 			k +=1
 	except:    
