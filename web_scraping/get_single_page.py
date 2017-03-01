@@ -33,15 +33,17 @@ def extract_single_page(url):
 		hl_inspect = re.sub(" ","",health_inspect).strip('\n')
 	except:
 		hl_inspect = None
+
 	week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 	hours = {i : None for i in week}
-	hour = tree.xpath('//table[@class="table table-simple hours-table"]//tr')
-	hou = {i.xpath('th')[0].text_content().strip():i.xpath('td')[0].text_content().strip() for i in hour}
-	for wkday in week:
-		try:
+	try:
+		hour = tree.xpath('//table[@class="table table-simple hours-table"]//tr')
+		hou = {i.xpath('th')[0].text_content().strip():i.xpath('td')[0].text_content().strip() for i in hour}			
+		for wkday in week:		
 			hours.update({wkday:hou[wkday]})
-		except:
-			hours.update({wkday:None}) 	
+	except:
+		hours = hours	
+
 	try:
 		more_info= tree.xpath('//div[@class="short-def-list"]')[0].text_content()
 		more_info= [ii for ii in re.sub(" ","",more_info).split('\n') if ii not in ['']]
