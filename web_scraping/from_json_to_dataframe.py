@@ -7,7 +7,7 @@ Created on Tue Feb 28 06:32:51 2017
 
 from save_load_dict import *
 import re
-import Pandas as pd
+import pandas as pd
 
 
 def clean_tag(tag):
@@ -48,6 +48,8 @@ def clean_area(area):
     except:
         new_area = area
     return(new_area)
+    
+
 
 def bool_value(val,bool_dict):
     try:
@@ -75,9 +77,12 @@ def json_to_dataframe(json_file):
                'price':new_price,
                'area':new_area
                })
+        try:
+            ii.update(ii['more information'])
+        except:
+            ii.update({'more information':ii['more information']})
+            
     data = pd.DataFrame(data)
-    more_info = pd.DataFrame([ii for ii in data['more information']])
-    newdata = pd.concat((data,more_info),axis = 2)
-    newdata = newdata.drop('more information', 1)
+    newdata = data.drop('more information', 1)
     return(newdata)
-print(json_to_dataframe("data_san_joes_one_page.txt"))
+data = json_to_dataframe("data_san_joes.txt")
