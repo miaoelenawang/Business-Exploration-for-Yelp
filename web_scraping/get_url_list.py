@@ -64,7 +64,10 @@ def parse_html(search_term, search_loc, start_num = '0'):
 
 def search_num_pages(html):
     num_p = html.xpath('//div[@class="search-pagination"]/div/div/div[@class="page-of-pages arrange_unit arrange_unit--fill"]')
-    num_pages = num_p[0].text_content().strip().split(' ')[-1]
+    try:
+        num_pages = num_p[0].text_content().strip().split(' ')[-1]
+    except:
+        num_pages = '0'
     return num_pages
 
 def areas_one_loc(search_term, search_loc, loc_state):
@@ -132,14 +135,16 @@ def business_many_pages(search_term, search_loc, loc_state):
         html = parse_html(search_term, area)
         num_pages = search_num_pages(html)
         
-        one_area_business = business_info(html, area)
-        for page in xrange(1, int(num_pages)):
-            start_num = page * 10
-            html = parse_html(search_term, area, str(start_num))
-            one_area_business += business_info(html, area)
+        if num_pages != '0':
+            one_area_business = business_info(html, area)
+            for page in xrange(1, int(num_pages)):
+                start_num = page * 10
+                html = parse_html(search_term, area, str(start_num))
+                one_area_business += business_info(html, area)
+        else:
+            one_area_business = []
         
         areas_business += one_area_business
     return areas_business
-
 
 
