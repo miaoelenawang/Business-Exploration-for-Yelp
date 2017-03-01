@@ -62,10 +62,13 @@ def extract_single_page(url):
 	related3 = {'related'+str(i):None for i in range(3)}
 	try:
 		related = [i.find_class('js-analytics-click')[0].get('href').split('/')[2].split('?')[0] for i in li]
-		n = len(related)
-		related3 = {'related'+str(i):related[i] for i in range(n)}
+		k = 0
+		for j in related[:2]:
+			related3.update({'related'+str(k):j}) 
+			k +=1
 	except:    
 		related3 = {'related'+str(i):None for i in range(3)}
+
 	Business = {"claimed status":claims,"health inspect":hl_inspect,"more information":more_info, 'latitude':latitude,'longitude':longitude}
 	Business.update(hours)  
 	Business.update(related3)  
