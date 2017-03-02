@@ -13,7 +13,7 @@ import pandas as pd
 import requests
 import numpy as np
 import requests_cache
-requests_cache.install_cache('yelp_cache')
+requests_cache.install_cache('yelp_cache_test_3')
 
 
 # In[3]:
@@ -60,7 +60,10 @@ def parse_html(search_term, search_loc, start_num = '0'):
     yelp_req = requests.get(urlbase, params = dataparams)
     yelp_html = yelp_req.text
     html = lx.fromstring(yelp_html)
-    return html
+    if "Hey there! Before you continue, we just need to check that you're not a robot." in html.text_content():
+        raise Exception('Robot: Please refresh page again')
+    else:
+        return html
 
 def search_num_pages(html):
     num_p = html.xpath('//div[@class="search-pagination"]/div/div/div[@class="page-of-pages arrange_unit arrange_unit--fill"]')
@@ -129,10 +132,11 @@ def business_info(html, search_loc):
 
 def business_many_pages(search_term, search_loc, loc_state):
     more_areas = areas_one_loc(search_term, search_loc, loc_state)
+    more_areas = more_areas[35:]
     
     areas_business = []
     for area in more_areas:
-        html = parse_html(search_term, area)
+        html = parse_html(search_term, area, '0')
         num_pages = search_num_pages(html)
         
         if num_pages != '0':
