@@ -21,7 +21,7 @@ def clean_tag(tag):
 
 def clean_review(review):
     try:
-        new_review = re.sub(" reviews","",review)
+        new_review = re.sub(" reviews?","",review)
     except:
         new_review = review
     return(new_review)
