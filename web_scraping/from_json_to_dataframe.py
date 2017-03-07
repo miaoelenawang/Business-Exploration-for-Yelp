@@ -61,7 +61,7 @@ def bool_value(val,bool_dict):
 
 
 def json_to_dataframe(json_file):
-    price_dict = {"$":1,"$$":2,"$$$":3,"$$$$":4}
+    price_dict = {"$":"Inexpensive","$$":"Moderate","$$$":"Pricey","$$$$":"Highend","None":None}
     #bool_dict = {"Yes":1,"No":0}
     # load the data as json
     data = reload_dic(json_file)
@@ -84,5 +84,6 @@ def json_to_dataframe(json_file):
             
     data = pd.DataFrame(data)
     newdata = data.drop('more information', 1)
+    newdata = newdata.drop_duplicates("id")
     return(newdata)
-data = json_to_dataframe("data_san_joes.txt")
+data = json_to_dataframe("detroit_food.txt")
