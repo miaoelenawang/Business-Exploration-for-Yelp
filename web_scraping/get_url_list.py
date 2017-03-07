@@ -13,6 +13,7 @@ import pandas as pd
 import requests
 import numpy as np
 import requests_cache
+import time
 requests_cache.install_cache('yelp_cache')
 
 
@@ -26,7 +27,6 @@ auth = Oauth1Authenticator(
 )
 
 client = Client(auth)
-
 
 # In[87]:
 
@@ -84,7 +84,7 @@ def business_info(html, search_loc):
     research_results = html.xpath('//div[@class="search-results-content"]/ul/li[@class="regular-search-result"]')
     
     many_business = []
-    for i in xrange(0, len(research_results)):
+    for i in range(0, len(research_results)):
         t = research_results[i].xpath('div/div[1]/div[1]/div/div[@class="media-story"]/h3/span/a/span')
         u = research_results[i].xpath('div/div[1]/div[1]/div/div[@class="media-story"]/h3/span/a')
         r = research_results[i].xpath('div/div[1]/div[1]/div/div[@class="media-story"]/div/div')
@@ -96,55 +96,61 @@ def business_info(html, search_loc):
     
         baseurl = "https://www.yelp.com"
         url = baseurl + u[0].get('href')
+        try:            
+            the_id = u[0].get('href').split('/')[-1]
+            one_id = the_id.split('?')[0]
 
-        the_id = u[0].get('href').split('/')[-1]
-        one_id = the_id.split('?')[0]
+            if len(r) == 0:
+                rating = None
+            else:
+                rating = r[0].get("title")
 
-        if len(r) == 0:
-            rating = None
-        else:
-            rating = r[0].get("title")
+            if len(re) == 0:
+                review = None
+            else:
+                review = re[0].text_content().strip()
 
-        if len(re) == 0:
-            review = None
-        else:
-            review = re[0].text_content().strip()
+            if len(p) == 0:
+                price = None
+            else:
+                price = p[0].text_content().strip()
 
-        if len(p) == 0:
-            price = None
-        else:
-            price = p[0].text_content().strip()
-
-        if len(tags) == 0:
-            tag = None
-        else:
-            tag = tags[0].text_content().strip()         
+            if len(tags) == 0:
+                tag = None
+            else:
+                tag = tags[0].text_content().strip()         
    
-        one_business = {'title':title, 'id':one_id,'url':url, 'rating':rating, 'review':review, 'price':price, 'tag':tag, 'area': search_loc}
-        pages = extract_single_page(url)
-        one_business.update(pages)
-        many_business += [one_business]
+            one_business = {'title':title, 'id':one_id,'url':url, 'rating':rating, 'review':review, 'price':price, 'tag':tag, 'area': search_loc}
+            pages = extract_single_page(url)
+            one_business.update(pages)
+            many_business += [one_business]
+        except:
+            continue
+        
     return many_business    
 
 
 def business_many_pages(search_term, search_loc, loc_state):
     more_areas = areas_one_loc(search_term, search_loc, loc_state)
-    
     areas_business = []
     for area in more_areas:
+        print(area)
         html = parse_html(search_term, area)
         num_pages = search_num_pages(html)
         
         if num_pages != '0':
             one_area_business = business_info(html, area)
-            for page in xrange(1, int(num_pages)):
+            for page in range(1, int(num_pages)):
+                print("num of page in " + area + " " + str(page))
                 start_num = page * 10
-                html = parse_html(search_term, area, str(start_num))
+                html = parse_html(search_term, area, str(start_num))                           
                 one_area_business += business_info(html, area)
+                time.sleep(5)
         else:
             one_area_business = []
-        
+        print("------num of business-----" + str(len(one_area_business)))
         areas_business += one_area_business
+        
     return areas_business
 
 
