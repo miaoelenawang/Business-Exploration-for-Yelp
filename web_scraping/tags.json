@@ -15,5 +15,10 @@
 "Southeast Asian":
     ["Thai", "Laotian", "Vietnamese", "Malaysian", "Singaporean", "Indonesian", "Burmese", "Cambodian", "Filipino"],
 "Indian":
-    ["Pakistani", "Indian", "Bangladeshi", "Himalayan/Nepalese"]
+    ["Pakistani", "Indian", "Bangladeshi", "Himalayan/Nepalese"],
+"Europe":
+ ["ModernEuropean","French","Fish&Chips", "Greek","Salvadoran","Tapas/SmallPlates","Belgian","Mediterranean","Spanish","TapasBars","Turkish","Brasseries","Czech","German","Catalan","Basque","Irish","British","Polish","Fondue","IrishPub",
+"Portuguese","Hungarian","Sardinian","Tuscan","Italian","Poutineries","Dominican"],
+"Desert":
+["Bakeries","Desserts","Donuts","IceCream&FrozenYogurt","JuiceBars&Smoothies","CustomCakes","Creperies","Kombucha","BubbleTea","Patisserie","Gelato","Waffles","Cupcakes","ShavedIce","Pretzels","Macarons","Waffles"]
 }
