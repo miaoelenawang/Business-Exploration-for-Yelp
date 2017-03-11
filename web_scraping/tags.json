@@ -8,7 +8,7 @@
 
 "American":["American(New)", "American(Traditional)","Armenian","Breakfast&Brunch","Sandwiches","Burgers",
             "Pizza","Coffee&Tea","Cafes","FastFood","Salad","FoodTrucks","Hawaiian","HotDogs","Falafel",
-            "ThemedCafes","ChickenWings"]
+            "ThemedCafes","ChickenWings"],
 "South American(Mexican)":
     ["Mexican", "Tacos", "Tex-Mex", " LatinAmerican", "Salvadoran", "Peruvian", "Argentine", "Cuban", 
     	"Brazilian", "Caribbean", "Empanadas", "PuertoRican", "NewMexicanCuisine", "Nicaraguan"],
