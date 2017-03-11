@@ -80,21 +80,20 @@ def data_to_node_edge(data):
   return dict({"node":node,"edge":edge})
 
  
-def scatter_nodes(pos, labels, color, size, opacity):
+def scatter_nodes(pos, labels, color, size=10, opacity=0.7):
     # pos is the dict of node positions
     # labels is a list  of labels of len(pos), to be displayed when hovering the mouse over the nodes
     # color is the color for nodes. When it is set as None the Plotly default color is used
     # size is the size of the dots representing the nodes
     #opacity is a value between [0,1] defining the node color opacity
-    trace = Scatter(x=[], y=[],  mode='markers', marker=Marker(size=[],color = [],opacity = []))
-    for key,value in pos.items():
-        trace['x'].append(value[0])
-        trace['y'].append(value[1])
+    trace = Scatter(x=[], y=[],  mode='markers', marker=Marker(size=[],color = []))
+    for key,value in pos1.items():
+      trace['x'].append(value[0])
+      trace['y'].append(value[1])
+      trace['marker']['color'].append(color)
     attrib=dict(name='', text=labels , hoverinfo='text', opacity=opacity) # a dict of Plotly node attributes
     trace=dict(trace, **attrib)# concatenate the dict trace and attrib
     trace['marker']['size']=size
-    trace['marker']['color'] = color
-    trace['opacity'] = opacity
     return trace       
   
 def scatter_edges(G, pos, line_color, line_width=1):
@@ -111,7 +110,7 @@ def scatter_edges(G, pos, line_color, line_width=1):
 data1 = json_to_dataframe("detroit_food.txt")
 data2 = pd.read_csv("sf.csv")
 data3 =  pd.read_csv("abq.csv")
-def network_trace(data):
+def network_trace(data,Color):
   G=nx.Graph()   
   edge_node = data_to_node_edge(data)
   node,edge = edge_node['node'],edge_node['edge']
@@ -119,8 +118,8 @@ def network_trace(data):
   G.add_edges_from(edge)
   pos1=nx.spring_layout(G)
   labels =node#[re.sub("-"," ",ii) for ii in [re.sub("detroit-?[0-9]?","",ii) for ii in node]]
-  trace1=scatter_edges(G, pos1, line_color = "#ff661a")
-  trace2=scatter_nodes(pos1, labels=labels,color = "#6666ff",size = 10,opacity = 0.7)
+  trace1=scatter_edges(G, pos1, line_color = "#1a8cff")
+  trace2=scatter_nodes(pos1, labels=labels, color = Color)
   return [trace1,trace2]
 
 tr1 = network_trace(data1)
@@ -134,10 +133,21 @@ trace5 = tr3[0]
 trace6 = tr3[1]
 
 
+tag_list = []
+for ii in list(Counter(data3['tag']).keys()):
+  if ii is None:
+    ii = "None";
+  for jj in ii.split(","):
+          tag_list.append(jj)
 
-
-
-
+dict(Counter(tag_list)).keys()
+eu_dessert_tag = {"Europe":
+ ['ModernEuropean','French','Fish&Chips', 'Greek','Salvadoran','Tapas/SmallPlates','Belgian','Mediterranean','Spanish','TapasBars','Turkish','Brasseries','Czech','German','Catalan','Basque','Irish','British','Polish','Fondue','IrishPub',
+'Portuguese','Hungarian','Sardinian','Tuscan','Italian','Poutineries','Dominican'],
+"Desert":
+['Bakeries','Desserts','Donuts','IceCream&FrozenYogurt','JuiceBars&Smoothies','CustomCakes','Creperies','Kombucha','BubbleTea','Patisserie','Gelato','Waffles','Cupcakes','ShavedIce','Pretzels',
+'Macarons','Waffles']}
+from save_load_dic.py import *
 
 
 
@@ -155,7 +165,7 @@ axis=dict(showline=False, # hide axis line, grid, ticklabels and  title
           showticklabels=False,
           title='' 
           )
-"""layout=Layout(title= 'network graph for cities',  #
+layout=Layout(title= 'network graph for cities',  #
     font= Font(),
     showlegend=False,
     autosize=False,
@@ -173,7 +183,8 @@ axis=dict(showline=False, # hide axis line, grid, ticklabels and  title
     ),
     hovermode='closest',
     plot_bgcolor='#EFECEA', #set background color            
-    )"""
+    )
+"""
 layout = Layout(
     title='network graph for cities',
     font= Font(),
@@ -210,14 +221,14 @@ layout = Layout(
             ]),
         )
     ]),
-)
+)"""
 
-data=Data([trace1,trace2,trace3,trace4,trace5,trace6])
+data=Data([trace1,trace2])
 
 fig = Figure(data=data, layout=layout)
 
 
-py.iplot(fig, filename = "tst6.html")
+py.iplot(fig, filename = "ts2.html")
 
 
 
