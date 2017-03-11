@@ -1,0 +1,19 @@
+{"Chinese": 
+	["Chinese","Taiwanese", "Cantonese","Szechuan","Shanghainese","HotPot","DimSum","Mongolian"], 
+"Alcohol":
+    ["WhiskeyBars", "GayBars", "ChampagneBars", "CocktailBars","WineBars", "Pubs", "Beer", "BeerBar", 
+    "Bartenders","DiveBars", "Breweries", "Lounges", "Bars","SportsBar","TikiBars","Cideries","Gastropubs", 
+    "Distilleries", "Wine&Spirits", "WineTastingClasses", "WineTastingRoom", "WineTours", "Wineries"],
+"JanpaneseKorean":["Japanese","JapaneseCurry","Korean","Ramen","SushiBars","Izakaya","Teppanyaki"],
+
+"American":["American(New)", "American(Traditional)","Armenian","Breakfast&Brunch","Sandwiches","Burgers",
+            "Pizza","Coffee&Tea","Cafes","FastFood","Salad","FoodTrucks","Hawaiian","HotDogs","Falafel",
+            "ThemedCafes","ChickenWings"],
+"South American(Mexican)":
+    ["Mexican", "Tacos", "Tex-Mex", " LatinAmerican", "Salvadoran", "Peruvian", "Argentine", "Cuban", 
+    	"Brazilian", "Caribbean", "Empanadas", "PuertoRican", "NewMexicanCuisine", "Nicaraguan"],
+"Southeast Asian":
+    ["Thai", "Laotian", "Vietnamese", "Malaysian", "Singaporean", "Indonesian", "Burmese", "Cambodian", "Filipino"],
+"Indian":
+    ["Pakistani", "Indian", "Bangladeshi", "Himalayan/Nepalese"]
+}
