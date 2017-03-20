@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yelp &raquo; Dashboards</title>
+  <link rel="shortcut icon" href="https://plot.ly/gh-pages/documentation/static//images/plotly-ico.png" />
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/keen-dashboards.css" />
+  <!-- For slider -->
+  <link rel="stylesheet" type="text/css" href="static/css/iThing.css" />
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand" href="./">Network Analysis of Restaurants in Detroit, San-francisco and Albuquerque &raquo; Dashboards</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Price, Number of Reviews and Ratings
+          </div>
+          <div class="chart-stage">
+            <div id="grid-1-1">
+              <div>
+                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="https://plot.ly/~Rita0309/4.embed"></iframe>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Analysis
+          </div>
+          <div class="chart-stage">
+            
+			<h3>
+			 Comparison between cities
+			</h3>
+			<p>
+			Overall the order of average rating: <strong>San francisco > Albuquerque > Detroit</strong><br>
+			The order of average number of reviews: <strong>San francisco > Albuquerque > Detroit</strong><br>
+			Since San-francisco is the largest city among the three  and its residents come from all over the world. It is not surprising SanFrancisco has the largest number of reviews given a large population base. Also, restaurants in international cities are severing people from all over the world. They are also facing tougher competition  given the  number of their peers. Therefore restaurant in Sanfrancisco tend to provide better food than restaurants in other two cities, which explain higher rating. Also, from the view of customer, it is also possible that customers in San Francisco are more tolerate than customers from other two cities.
+			</p>
+			
+			<h3>
+			Price vs Number of Reviews
+			</h3>
+			<p>We also discover that in three cities, the restaurant with most number of reviews always falls in the range of low price. It is natural that the restaurant with lowest price attract most customer given the supply rule.
+			</p>
+			
+			<h3>
+			Rating and Price
+			</h3>
+			<p>In three cities, there are also a trend that, the higher the price for the restaurant, the rating for that restuarant are more likely falling into a high level. Since expensive restaurant usually offer high quality food, better service and a friendly environment.
+			</p>
+			
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Detroit
+          </div>
+          <div class="chart-stage">
+            <iframe width="100%" height="1000px" frameborder="0" scrolling="no" src="http://plot.ly/~Rita0309/36.embed"></iframe>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+           Analysis for Detroit
+          </div>
+          <div class="chart-stage">
+		   <h3>Introduction</h3>
+           <p>From the Yelp website, we find the relatedness of each restaurant. It is known that Yelp recommends those related restaurant for similarity between them. For instance, restaurants may sell same kinds of food or are close to each other. Therefore we want to recover such similarity between those restaurants which are related. In the network graph, each node is a restaurant and edges are connections. Here we color the nodes by their tags( after cleaning). We are hoping we can see some grouping on the nodes of the network graph.
+ 
+			<br> Note: Since it is possible for each restaurant to have multiple tags, we add boolean attributes to each restaurant( such as whether a restaurant has tag "Chinese" or not). Therefore, if we click on tag in the legend, the colored nodes are restaurants with that tag, while the gray one are restaurants does not have that tag.
+		   </p>
+		   <h3> Chinese</h3>
+		   <p>Chinese restaurant are grouped well. And also the number of Chinese restaurant is very small in Detroit.(click all the trace except chinese)</p>
+		   <h3>Alcohol</h3>
+		   <p> Though bars and pubs are not well grouped but most of them are still connected.</p>
+		   <h3>American</h3>
+		   <p>Most american restaurant are spanned on connected nodes.And the number of american food restaurant is the most</p>
+		   <h3> South American</h3>
+		   <p>Most South american restaurant are spanned on connected nodes</p>
+		   <h3> Desert, Europe Food</h3>
+		   <p>Restaurant in those tags are not well grouped. Since there are other factors like location also involved in their connection</p>
+		   <p>From the network, we can also get a rough idea about how the restraurant distributed in each tag. Apparently the number of restaurant under that tags are: American > Europe, Alcohol, Dessert> South American > Chinese > Other in Detroit.
+
+           <br>And also we noticed that the connection are not only formed by tags, some of the restaurant is connected since they are in the same place. Therefore to better cluster them, we can adding the "area“ as variable.</p>
+		   
+		   
+		   
+		   
+		  </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Albuquerque
+          </div>
+          <iframe width="100%" height="1000px" frameborder="0" scrolling="no" src="http://plot.ly/~Rita0309/40.embed"></iframe>
+          </div>
+      </div>    
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Analysis for Albuquerque
+          </div>
+          <div class="chart-stage">
+            <h3>Similar to the analysis above, tags that are grouped well</h3>
+			<p>Chinese Restraurants, Japanese and Kocrean restraurants, American restraurants, SouthEast Asian Restaurants, Indian Restaurants, SouthAmerican food</p>
+
+			<h3>Less satisfying</h3>
+			<p>Those are tags that does not group well from the plots:<br>
+				Acohol, Dessert, Europe.</p>
+			<p> The reason why restraurants with those tags does not group well are:<br>
+			Firstly there are other information like location involves in the connetion plots;<br>
+			Secondly, the number of restraurants in those plots are relatively larger than the restraurants with tags like Chinese, Japanese and Kocrean, making them harder to group.</p>
+
+		<h3>Distribution</h3>
+			<p>
+			The number of restaurants with tags:<br>
+			American > Acohol, Dessert, Europe ,SouthAmerican> Chinese, japaneseKorean, Indian > others</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            San-francisco
+          </div>
+          <iframe width="100%" height="1000px" frameborder="0" scrolling="no" src="http://plot.ly/~Rita0309/38.embed"></iframe>
+          </div>
+      </div>    
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Analysis for San-francisco
+          </div>
+          <div class="chart-stage">
+            <h3>Chinese,Alcohol,Kocreal and Japanese,South American,South East Asian,Indian,Europe, Dessert</h3>
+			<p>Restaurants with those tags does not grouped well in San-francisco</p>
+			<h3> American</h3>
+			<p> Number of American Restraurants is the largest in San-francisco, and they share most connections. However, the grouping of American restaurants may simply due to the large sample size.</p>
+			<h3> Distribution</h3>
+			<p> The number of restranrants with tags: American > Dessert, Alcohol, Europe > Chinese, Japanese and Kocrean, SouthEast Asian, South American > Indian, others
+			<p> Above all, restaurants in San-francisco does not group well as the other two cities. We noticed that the number of restaurants in SF is much larger than Detroit and Alburquque. Therefore, those restaurants may scattered spatially, making them hard to share same collection. Also,  in san-franciso, it is more like for one restaurant to obtain multiple tags( given san-francisco is an international city). Therefore those tags lost specifility here. </p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+
+  </div>
+
+  <!--<script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>-->
+  <script type="text/javascript" src="static/js/slider/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="static/js/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="static/js/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <!-- Slider widget files -->
+  <script type="text/javascript" src="static/js/slider/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSliderMouseTouch.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSliderDraggable.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSliderBar.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSliderHandle.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSliderLabel.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRangeSlider.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQDateRangeSliderHandle.js"></script>  
+  <script type="text/javascript" src="static/js/slider/jQDateRangeSlider.js"></script>
+  <script type="text/javascript" src="static/js/slider/jQRuler.js"></script>
+  <script type="text/javascript" src="static/js/slider/slider.js"></script>
+
+</body>
+</html>
