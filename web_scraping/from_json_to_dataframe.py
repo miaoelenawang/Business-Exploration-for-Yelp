@@ -61,7 +61,7 @@ def bool_value(val,bool_dict):
 
 
 def json_to_dataframe(json_file):
-    price_dict = {"$":1,"$$":2,"$$$":3,"$$$$":4,None:0}
+    price_dict = {"$":1,"$$":2,"$$$":3,"$$$$":4,None:"None"}
     #bool_dict = {"Yes":1,"No":0}
     # load the data as json
     data = reload_dic(json_file)
