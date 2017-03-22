@@ -30,7 +30,7 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
             Price, Number of Reviews and Ratings
@@ -44,7 +44,8 @@
           </div>
           </div>
       </div>
-      <div class="col-sm-4">
+	 <div class="row">
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
             Analysis
@@ -79,7 +80,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
             Detroit
@@ -90,31 +91,19 @@
           
         </div>
       </div>
-      <div class="col-sm-4">
+	</div>
+	<div class = "row>"
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
            Analysis for Detroit
           </div>
           <div class="chart-stage">
 		   <h3>Introduction</h3>
-           <p>From the Yelp website, we find the relatedness of each restaurant. It is known that Yelp recommends those related restaurant for similarity between them. For instance, restaurants may sell same kinds of food or are close to each other. Therefore we want to recover such similarity between those restaurants which are related. In the network graph, each node is a restaurant and edges are connections. Here we color the nodes by their tags( after cleaning). We are hoping we can see some grouping on the nodes of the network graph.
- 
-			<br> Note: Since it is possible for each restaurant to have multiple tags, we add boolean attributes to each restaurant( such as whether a restaurant has tag "Chinese" or not). Therefore, if we click on tag in the legend, the colored nodes are restaurants with that tag, while the gray one are restaurants does not have that tag.
-		   </p>
-		   <h3> Chinese</h3>
-		   <p>Chinese restaurant are grouped well. And also the number of Chinese restaurant is very small in Detroit.(click all the trace except chinese)</p>
-		   <h3>Alcohol</h3>
-		   <p> Though bars and pubs are not well grouped but most of them are still connected.</p>
-		   <h3>American</h3>
-		   <p>Most american restaurant are spanned on connected nodes.And the number of american food restaurant is the most</p>
-		   <h3> South American</h3>
-		   <p>Most South american restaurant are spanned on connected nodes</p>
-		   <h3> Desert, Europe Food</h3>
-		   <p>Restaurant in those tags are not well grouped. Since there are other factors like location also involved in their connection</p>
-		   <p>From the network, we can also get a rough idea about how the restraurant distributed in each tag. Apparently the number of restaurant under that tags are: American > Europe, Alcohol, Dessert> South American > Chinese > Other in Detroit.
-
-           <br>And also we noticed that the connection are not only formed by tags, some of the restaurant is connected since they are in the same place. Therefore to better cluster them, we can adding the "area“ as variable.</p>
-		   
+           <p>From the Yelp website, we find the relatedness of each restaurant. It is known that Yelp recommends those related restaurant for similarity between them. For instance, restaurants may sell same kinds of food or are close to each other. Therefore we want to visualize such similarity between those restaurants which are related. In the network graph, each node is a restaurant and edges are connections. Here we color the nodes by their tags( after cleaning). We are hoping we can see some grouping on the nodes of the network graph.</p>
+  <br> <p><strong>Note</strong>: Since it is possible for each restaurant to have multiple tags, we add boolean attributes to each restaurant( such as whether a restaurant has tag "Chinese" or not). Therefore, if we click on tag in the legend, the colored nodes are restaurants with that tag, while the gray one are restaurants does not have that tag.</p>
+  <br><p> Since github Markdown does not support Iframe, the images is not interactive for now,however it is linked to the original webpage at plotly.  The interactive plots are showed there. If you want to see whether restaurants with tag "Chinese" are grouped well, click all the tags on the legend that is not chinese. Then it will only show you the restaurants attributes with "Chinese" or not</p> 
+  
 		   
 		   
 		   
@@ -127,7 +116,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
             Albuquerque
@@ -135,7 +124,8 @@
           <iframe width="100%" height="1000px" frameborder="0" scrolling="no" src="http://plot.ly/~Rita0309/40.embed"></iframe>
           </div>
       </div>    
-      <div class="col-sm-4">
+	</div>
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
              Analysis for Albuquerque
@@ -161,15 +151,17 @@
     </div>
   </div>
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
             San-francisco
           </div>
           <iframe width="100%" height="1000px" frameborder="0" scrolling="no" src="http://plot.ly/~Rita0309/38.embed"></iframe>
           </div>
-      </div>    
-      <div class="col-sm-4">
+      </div>
+    <div>
+    <div class = "row">	
+      <div class="col-sm-12">
         <div class="chart-wrapper">
           <div class="chart-title">
              Analysis for San-francisco
