@@ -94,7 +94,7 @@ hover = HoverTool(tooltips=[('Var', '@vars'), ('Count', '@y')])
 plot.add_tools(hover)
 
 select_city = Select(title="Select City:", value="San Francisco", options=["San Francisco", "Albuquerque", "Detroit"])
-select_var = Select(title="Select Variable:", value="Tag", options=["Tag", "Price", "Rating", "Area"])
+select_var = Select(title="Select Metrics:", value="Tag", options=["Tag", "Price", "Rating", "Area"])
 
 callback = CustomJS(args=dict(source_sf_tag=source_sf_tag, source_abq_tag=source_abq_tag, source_det_tag=source_det_tag,
                               source_sf_price=source_sf_price, source_abq_price=source_abq_price, source_det_price=source_det_price,
@@ -253,7 +253,6 @@ def get_source_bar_rating(df, ratings):
     return source
 
 ##### bar plot for price by tag
-####add ratings
 from bokeh.layouts import column, row
 from bokeh.models import CustomJS, ColumnDataSource, RadioButtonGroup, Select, HoverTool
 from bokeh.plotting import figure, output_file, show
@@ -264,10 +263,6 @@ source_sf_tags = get_source_bar(sf, tags)
 source_abq_tags = get_source_bar(abq, tags)
 source_det_tags = get_source_bar(detroit, tags)
 
-source_sf_rating = get_source_bar_rating(sf, ratings)
-source_abq_rating = get_source_bar_rating(abq, ratings)
-source_det_rating = get_source_bar_rating(detroit, ratings)
-
 plot = figure(background_fill_color="#EFE8E2", title="Bar plot for price", plot_width=600, plot_height=400)
 plot.vbar(x='x', width=0.5, bottom=0, top='y', source = source_sf_tags, color="firebrick")
 
@@ -275,223 +270,121 @@ hover = HoverTool(tooltips=[('Price', '@dollar'), ('Count', '@y')])
 plot.add_tools(hover)
 
 select_city = Select(title="Select City:", value="San Francisco", options=["San Francisco", "Albuquerque", "Detroit"])
-select_tag = Select(title="Select tag:", value="Chinese", options=tags+['None'])
-select_rating = Select(title="Select rating:", value="None", options=ratings+['None'])
+select_tag = Select(title="Select tag:", value="Chinese", options=tags)
 
 callback = CustomJS(args=dict(source_sf_tag=source_sf_tags, source_abq_tag=source_abq_tags, source_det_tag=source_det_tags,
-                              source_sf_rating=source_sf_rating, source_abq_rating=source_abq_rating, source_det_rating=source_det_rating,
                               city_select_obj=select_city, tag_select_obj=select_tag, rating_select_obj=select_rating), code="""
     var data_sf_tag = source_sf_tag.data;
     var data_abq_tag = source_abq_tag.data;
     var data_det_tag = source_det_tag.data;
     
-    var data_sf_rating = source_sf_rating.data;
-    var data_abq_rating = source_abq_rating.data;
-    var data_det_rating = source_det_rating.data;
-    
     var city = city_select_obj.get('value');
     var tag = tag_select_obj.get('value');
-    var rating = rating_select_obj.get('value');
     
     if (city == 'San Francisco'){
-    if(tag == 'Alcohol' && rating == 'None'){
+    if(tag == 'Alcohol'){
     data_sf_tag['x']= data_sf_tag['x0'];
     data_sf_tag['y'] = data_sf_tag['y0'];
-    }else if(tag == 'Chinese' && rating == 'None'){
+    }else if(tag == 'Chinese'){
     data_sf_tag['x']= data_sf_tag['x1'];
     data_sf_tag['y'] = data_sf_tag['y1'];
-    }else if(tag == 'Southeast Asian' && rating == 'None'){
+    }else if(tag == 'Southeast Asian'){
     data_sf_tag['x']= data_sf_tag['x2'];
     data_sf_tag['y'] = data_sf_tag['y2'];
-    }else if(tag == 'Dessert' && rating == 'None'){
+    }else if(tag == 'Dessert'){
     data_sf_tag['x']= data_sf_tag['x3'];
     data_sf_tag['y'] = data_sf_tag['y3'];
-    }else if(tag == 'American' && rating == 'None'){
+    }else if(tag == 'American'){
     data_sf_tag['x']= data_sf_tag['x4'];
     data_sf_tag['y'] = data_sf_tag['y4'];
-    }else if(tag == 'JanpaneseKorean' && rating == 'None'){
+    }else if(tag == 'JanpaneseKorean'){
     data_sf_tag['x']= data_sf_tag['x5'];
     data_sf_tag['y'] = data_sf_tag['y5'];
-    }else if(tag == 'Indian' && rating == 'None'){
+    }else if(tag == 'Indian'){
     data_sf_tag['x']= data_sf_tag['x6'];
     data_sf_tag['y'] = data_sf_tag['y6'];
-    }else if(tag == 'South American(Mexican)' && rating == 'None'){
+    }else if(tag == 'South American(Mexican)'){
     data_sf_tag['x']= data_sf_tag['x7'];
     data_sf_tag['y'] = data_sf_tag['y7'];
-    }else if(tag == 'European' && rating == 'None'){
+    }else if(tag == 'European'){
     data_sf_tag['x']= data_sf_tag['x8'];
     data_sf_tag['y'] = data_sf_tag['y8'];
-    }else if(tag == 'None' && rating == '1.0'){
-    data_sf_tag['x']= data_sf_rating['x0'];
-    data_sf_tag['y'] = data_sf_rating['y0'];
-    }else if(tag == 'None' && rating == '1.5'){
-    data_sf_tag['x']= data_sf_rating['x1'];
-    data_sf_tag['y'] = data_sf_rating['y1'];
-    }else if(tag == 'None' && rating == '2.0'){
-    data_sf_tag['x']= data_sf_rating['x2'];
-    data_sf_tag['y'] = data_sf_rating['y2'];
-    }else if(tag == 'None' && rating == '2.5'){
-    data_sf_tag['x']= data_sf_rating['x3'];
-    data_sf_tag['y'] = data_sf_rating['y3'];
-    }else if(tag == 'None' && rating == '3.0'){
-    data_sf_tag['x']= data_sf_rating['x4'];
-    data_sf_tag['y'] = data_sf_rating['y4'];
-    }else if(tag == 'None' && rating == '3.5'){
-    data_sf_tag['x']= data_sf_rating['x5'];
-    data_sf_tag['y'] = data_sf_rating['y5'];
-    }else if(tag == 'None' && rating == '4.0'){
-    data_sf_tag['x']= data_sf_rating['x6'];
-    data_sf_tag['y'] = data_sf_rating['y6'];
-    }else if(tag == 'None' && rating == '4.5'){
-    data_sf_tag['x']= data_sf_rating['x7'];
-    data_sf_tag['y'] = data_sf_rating['y7'];
-    }else if(tag == 'None' && rating == '5.0'){
-    data_sf_tag['x']= data_sf_rating['x8'];
-    data_sf_tag['y'] = data_sf_rating['y8'];
-    }else if(tag == 'None' && rating == 'None'){
-    data_sf_tag['x']= [];
-    data_sf_tag['y']= [];
     }
     
     }else if(city == 'Albuquerque'){
-    if(tag == 'Alcohol' && rating == 'None'){
+    if(tag == 'Alcohol'){
     data_sf_tag['x']= data_abq_tag['x0'];
     data_sf_tag['y'] = data_abq_tag['y0'];
-    }else if(tag == 'Chinese' && rating == 'None'){
+    }else if(tag == 'Chinese'){
     data_sf_tag['x']= data_abq_tag['x1'];
     data_sf_tag['y'] = data_abq_tag['y1'];
-    }else if(tag == 'Southeast Asian' && rating == 'None'){
+    }else if(tag == 'Southeast Asian'){
     data_sf_tag['x']= data_abq_tag['x2'];
     data_sf_tag['y'] = data_abq_tag['y2'];
-    }else if(tag == 'Dessert' && rating == 'None'){
+    }else if(tag == 'Dessert'){
     data_sf_tag['x']= data_abq_tag['x3'];
     data_sf_tag['y'] = data_abq_tag['y3'];
-    }else if(tag == 'American' && rating == 'None'){
+    }else if(tag == 'American'){
     data_sf_tag['x']= data_abq_tag['x4'];
     data_sf_tag['y'] = data_abq_tag['y4'];
-    }else if(tag == 'JanpaneseKorean' && rating == 'None'){
+    }else if(tag == 'JanpaneseKorean'){
     data_sf_tag['x']= data_abq_tag['x5'];
     data_sf_tag['y'] = data_abq_tag['y5'];
-    }else if(tag == 'Indian' && rating == 'None'){
+    }else if(tag == 'Indian'){
     data_sf_tag['x']= data_abq_tag['x6'];
     data_sf_tag['y'] = data_abq_tag['y6'];
-    }else if(tag == 'South American(Mexican)' && rating == 'None'){
+    }else if(tag == 'South American(Mexican)'){
     data_sf_tag['x']= data_abq_tag['x7'];
     data_sf_tag['y'] = data_abq_tag['y7'];
-    }else if(tag == 'European' && rating == 'None'){
+    }else if(tag == 'European'){
     data_sf_tag['x']= data_abq_tag['x8'];
     data_sf_tag['y'] = data_abq_tag['y8'];
-    }else if(tag == 'None' && rating == '1.0'){
-    data_sf_tag['x']= data_abq_rating['x0'];
-    data_sf_tag['y'] = data_abq_rating['y0'];
-    }else if(tag == 'None' && rating == '1.5'){
-    data_sf_tag['x']= data_abq_rating['x1'];
-    data_sf_tag['y'] = data_abq_rating['y1'];
-    }else if(tag == 'None' && rating == '2.0'){
-    data_sf_tag['x']= data_abq_rating['x2'];
-    data_sf_tag['y'] = data_abq_rating['y2'];
-    }else if(tag == 'None' && rating == '2.5'){
-    data_sf_tag['x']= data_abq_rating['x3'];
-    data_sf_tag['y'] = data_abq_rating['y3'];
-    }else if(tag == 'None' && rating == '3.0'){
-    data_sf_tag['x']= data_abq_rating['x4'];
-    data_sf_tag['y'] = data_abq_rating['y4'];
-    }else if(tag == 'None' && rating == '3.5'){
-    data_sf_tag['x']= data_abq_rating['x5'];
-    data_sf_tag['y'] = data_abq_rating['y5'];
-    }else if(tag == 'None' && rating == '4.0'){
-    data_sf_tag['x']= data_abq_rating['x6'];
-    data_sf_tag['y'] = data_abq_rating['y6'];
-    }else if(tag == 'None' && rating == '4.5'){
-    data_sf_tag['x']= data_abq_rating['x7'];
-    data_sf_tag['y'] = data_abq_rating['y7'];
-    }else if(tag == 'None' && rating == '5.0'){
-    data_sf_tag['x']= data_abq_rating['x8'];
-    data_sf_tag['y'] = data_abq_rating['y8'];
-    }else if(tag == 'None' && rating == 'None'){
-    data_sf_tag['x']= [];
-    data_sf_tag['y']= [];
     }
     
     }else if(city == 'Detroit'){
-    if(tag == 'Alcohol' && rating == 'None'){
+    if(tag == 'Alcohol'){
     data_sf_tag['x']= data_det_tag['x0'];
     data_sf_tag['y'] = data_det_tag['y0'];
-    }else if(tag == 'Chinese' && rating == 'None'){
+    }else if(tag == 'Chinese'){
     data_sf_tag['x']= data_det_tag['x1'];
     data_sf_tag['y'] = data_det_tag['y1'];
-    }else if(tag == 'Southeast Asian' && rating == 'None'){
+    }else if(tag == 'Southeast Asian'){
     data_sf_tag['x']= data_det_tag['x2'];
     data_sf_tag['y'] = data_det_tag['y2'];
-    }else if(tag == 'Dessert' && rating == 'None'){
+    }else if(tag == 'Dessert'){
     data_sf_tag['x']= data_det_tag['x3'];
     data_sf_tag['y'] = data_det_tag['y3'];
-    }else if(tag == 'American' && rating == 'None'){
+    }else if(tag == 'American'){
     data_sf_tag['x']= data_det_tag['x4'];
     data_sf_tag['y'] = data_det_tag['y4'];
-    }else if(tag == 'JanpaneseKorean' && rating == 'None'){
+    }else if(tag == 'JanpaneseKorean'){
     data_sf_tag['x']= data_det_tag['x5'];
     data_sf_tag['y'] = data_det_tag['y5'];
-    }else if(tag == 'Indian' && rating == 'None'){
+    }else if(tag == 'Indian'){
     data_sf_tag['x']= data_det_tag['x6'];
     data_sf_tag['y'] = data_det_tag['y6'];
-    }else if(tag == 'South American(Mexican)' && rating == 'None'){
+    }else if(tag == 'South American(Mexican)'){
     data_sf_tag['x']= data_det_tag['x7'];
     data_sf_tag['y'] = data_det_tag['y7'];
-    }else if(tag == 'European' && rating == 'None'){
+    }else if(tag == 'European'){
     data_sf_tag['x']= data_det_tag['x8'];
     data_sf_tag['y'] = data_det_tag['y8'];
-    }else if(tag == 'None' && rating == '1.0'){
-    data_sf_tag['x']= data_det_rating['x0'];
-    data_sf_tag['y'] = data_det_rating['y0'];
-    }else if(tag == 'None' && rating == '1.5'){
-    data_sf_tag['x']= data_det_rating['x1'];
-    data_sf_tag['y'] = data_det_rating['y1'];
-    }else if(tag == 'None' && rating == '2.0'){
-    data_sf_tag['x']= data_det_rating['x2'];
-    data_sf_tag['y'] = data_det_rating['y2'];
-    }else if(tag == 'None' && rating == '2.5'){
-    data_sf_tag['x']= data_det_rating['x3'];
-    data_sf_tag['y'] = data_det_rating['y3'];
-    }else if(tag == 'None' && rating == '3.0'){
-    data_sf_tag['x']= data_det_rating['x4'];
-    data_sf_tag['y'] = data_det_rating['y4'];
-    }else if(tag == 'None' && rating == '3.5'){
-    data_sf_tag['x']= data_det_rating['x5'];
-    data_sf_tag['y'] = data_det_rating['y5'];
-    }else if(tag == 'None' && rating == '4.0'){
-    data_sf_tag['x']= data_det_rating['x6'];
-    data_sf_tag['y'] = data_det_rating['y6'];
-    }else if(tag == 'None' && rating == '4.5'){
-    data_sf_tag['x']= data_det_rating['x7'];
-    data_sf_tag['y'] = data_det_rating['y7'];
-    }else if(tag == 'None' && rating == '5.0'){
-    data_sf_tag['x']= data_det_rating['x8'];
-    data_sf_tag['y'] = data_det_rating['y8'];
-    }else if(tag == 'None' && rating == 'None'){
-    data_sf_tag['x']= [];
-    data_sf_tag['y']= [];
     }
     }
     source_sf_tag.trigger('change');
     source_abq_tag.trigger('change');
     source_det_tag.trigger('change');
-    source_sf_rating.trigger('change');
-    source_abq_rating.trigger('change');
-    source_det_rating.trigger('change');
     """)
 
 select_city.callback = callback
 select_tag.callback = callback
-select_rating.callback = callback
 
 plot.grid.grid_line_width = 2
 plot.xaxis.major_label_text_font_size="12pt"
 plot.xaxis.axis_label = 'Price'
 plot.yaxis.axis_label = 'Count'
 
-layout_bar2 = column(row(select_city, column(select_tag, select_rating)), plot)
-
+layout_bar2 = column(row(select_city, select_tag), plot)
 
 ###prepare the data for histogram1
 def extract_var(df, tag, var='rating', bin_num = 10):
