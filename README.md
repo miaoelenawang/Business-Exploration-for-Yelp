@@ -12,4 +12,4 @@ In our analysis, we choose restaurant as business entity. We want to help these 
 overview of how to choose site to start or expand a new business, how to set the right price and how to improve
 their business though some attributes such as wifi and parking.
 
-See more details at https://miaoelenawang.github.io/STA-141B-Final-Project/
+See more details at https://miaoelenawang.github.io/Business-Exploration-for-Yelp/
