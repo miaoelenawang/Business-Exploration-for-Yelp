@@ -690,6 +690,10 @@
 }
 h5{
     text-align:center;
+    font-size:medium;
+}
+p{
+	font-size:medium;
 }
 
 </style>   
@@ -715,17 +719,19 @@ h5{
     <div class="bk-plotdiv" id="792e3e5a-e716-4418-a7ef-a37a9556badd"></div>
 </div> 
         <p>By clicking the two buttons, we can compare different cities in various metrics.</p> 
+        <p>
            <ul>
-           <li>Culture Trend: choose tag. For example, compared with other two cities, Albuquerque has relatively higher bar of Mexican food.
+           <li><strong>Culture Trend: choose tag.</strong> For example, compared with other two cities, Albuquerque has relatively higher bar of Mexican food.
            It indicated that people in Albuquerque like Mexican food more, which is true since it is close to Mexico.</li>
-           <li>Consumption Level: choose price. By checking the price distribution, restaurants in San Francisco generally have higher price 
+           <li><strong>Consumption Level: choose price.</strong> By checking the price distribution, restaurants in San Francisco generally have higher price 
            than other two cities. Business owners can set a little higher price in San Francisco.</li>
-           <li>Restaurant Quality/Reputation : choose rating. For example, the distribution of the rating in San Francisco is light in the left 
+           <li><strong>Restaurant Quality/Reputation : choose rating.</strong> For example, the distribution of the rating in San Francisco is light in the left 
            tail and heavy in the right tail, which means restaurants in San Francisco rarely have low reputation and business owners can expect their future ratings high.</li>
-           <li>Gathering Places of Restaurants: choose area. Take San Francisco as an example.  
+           <li><strong>Gathering Places of Restaurants: choose area.</strong>Take San Francisco as an example.  
            From the plot, most restaurants congregate in SoMa, Misson and Financial District. 
-           Here we plotted Choropleth maps (Click to view). They are bustling areas and thus are good choices for opening a new restaurant. </li>
+           Here we plotted Choropleth maps (<a href='number_sf_restaurant_choropleth.html'>Click to view</a>). They are bustling areas and thus are good choices for opening a new restaurant. </li>
         </ul>
+        </p>
         
 <script type="text/javascript">
     (function() {
@@ -756,15 +762,13 @@ h5{
 
         <p>
         <ul>
-        <li>click the button of rating: we can see in San Francisco, restaurants in Bayview-Hunters Point, 
+        <li><strong>Click the button of rating:</strong> we can see in San Francisco, restaurants in Bayview-Hunters Point, 
         Bernal Heights, Castro, Misson, Potrero Hill, SoMa areas have higher rating than others, 
         which means restaurants in these areas have higher reputation than others. 
         Customers who go to these areas prefer to find a good restaurant.
         Starting or expanding a new business there, Business owners will face higher market competition.</li>
-        <li>click the button of price:  take San Francisco as an example,  restaurants in Chinatown, 
-        Inner Sunset, Mission, Outer Sunset, Tenderlion areas are cheaper than others.
-        Therefore, business owners need to care more about other factors such as tasty and service if 
-        they want to set the price high in these areas.</li>
+        <li><strong>Click the button of price:</strong> take <a href='ratio_expensive_restaurant_choropleth.html'>San Francisco</a> as an example,  restaurants in Chinatown, Inner Sunset, Mission, Outer Sunset, Tenderlion areas are cheaper than others.
+        Therefore, business owners need to care more about other factors such as tasty and service if they want to set the price high in these areas.</li>
         </ul>
         </p>
         
@@ -810,9 +814,27 @@ h5{
         <p>contingency table</p>
         <br>
         <br>
-        <p>P-value is less than 2.2e-16, so p-value is smaller than alpha and we reject the null hypothesis. We are 95% confident that price and rating are related with each other. 
+        <p>P-value is < 2.2e-16, so p-value is smaller than alpha and we reject the null hypothesis. We are 95% confident that price and rating are related with each other. 
         Therefore, business owners should not lower  the price to attract customers without considering other factors like rating.</p>
+       
+        <p><strong>Other Questions:</strong></p>
+		<p>Which attributes play a major role when it comes to attracting more customers, like Wifi, Parking, ambience etc.?</p>
+        <ul>
+        <li>
+        <p>Is wifi related to the price?</p>
+        <p> H0: wifi and price are independent VS H1: wifi and price are dependent</p>
+        <br>
+		<br>
+        <p>p-value = 4.585e-06 < 0.05, so p-value is smaller than alpha and we reject the null hypothesis. We are 95% confident that wifi is related to price. Therefore, if business owners plan to include wifi in their restaurant, they can raise the price properly. </p></li>
+       
+        <li>
+		<p>Is wifi related to the rating?</p>
+		<p> H0: wifi and rating are independent VS H1: wifi and rating are dependent</p>
+		<br>
+		<br>
+		<p>p-value = 0.4232 > 0.05, so p-value is larger than alpha and we cannot reject the null hypothesis. Hence, wifi isn’t associated with rating. Having wifi will not strengthen the goodwill of a restaurant.</p>
 
+        </ul>
         
 <script type="text/javascript">
     (function() {
