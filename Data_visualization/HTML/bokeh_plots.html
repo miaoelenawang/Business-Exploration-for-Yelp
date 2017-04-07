@@ -695,6 +695,23 @@ h5{
 p{
 	font-size:medium;
 }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 10%
+    margin-right: 10%
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;   
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: Beige  ;
+}
 
 </style>   
     </head>
@@ -811,8 +828,76 @@ p{
          contingency table analysis is used to test this hypothesis.</p>
 
         <p>H0: price and rating are independent VS  H1: price and rating are dependent</p>
-        <p>contingency table</p>
-        <br>
+           <br>
+<table>
+	<caption><b>Contingency Tables for Rating and Price</b></caption>
+	<tr>
+	    <th></th>
+		<th colspan="9"> Rating Level</th>
+	</tr>
+	<tr>
+		<td>Price Level</td>
+		<td>1.0</td>
+		<td>1.5</td>
+		<td>2.0</td>
+		<td>2.5</td>
+		<td>3.0</td>
+		<td>3.5</td>
+		<td>4.0</td>
+		<td>4.5</td>
+		<td>5.0</td>
+	</tr>
+	<tr>
+		<td>$</td>
+		<td>6</td>
+		<td>23</td>
+		<td>61</td>
+		<td>177</td>
+		<td>375</td>
+		<td>631</td>
+		<td>816</td>
+		<td>470</td>
+		<td>131</td>
+	</tr>
+	<tr>
+		<td>$$</td>
+		<td>5</td>
+		<td>7</td>
+		<td>39</td>
+		<td>111</td>
+		<td>325</td>
+		<td>821</td>
+		<td>1027</td>
+		<td>408</td>
+		<td>132</td>
+	</tr>
+	<tr>
+		<td>$$$</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>14</td>
+		<td>34</td>
+		<td>107</td>
+		<td>135</td>
+		<td>43</td>
+		<td>19</td>
+	</tr>
+	<tr>
+		<td>$$$$</td>
+		<td>3</td>
+		<td>3</td>
+		<td>2</td>
+		<td>3</td>
+		<td>3</td>
+		<td>9</td>
+		<td>30</td>
+		<td>27</td>
+		<td>8</td>
+	</tr>
+
+</table>
+
         <br>
         <p>P-value is < 2.2e-16, so p-value is smaller than alpha and we reject the null hypothesis. We are 95% confident that price and rating are related with each other. 
         Therefore, business owners should not lower  the price to attract customers without considering other factors like rating.</p>
@@ -824,6 +909,41 @@ p{
         <p>Is wifi related to the price?</p>
         <p> H0: wifi and price are independent VS H1: wifi and price are dependent</p>
         <br>
+        <table>
+	<caption><b>Contingency Tables for Price and WiFi</b></caption>
+	<tr>
+	    <th></th>
+		<th colspan="4"> Price Level</th>
+	</tr>
+	<tr>
+		<td>WiFi</td>
+		<td>$</td>
+		<td>$$</td>
+		<td>$$$</td>
+		<td>$$$$</td>
+	</tr>
+	<tr>
+		<td>No</td>
+		<td>1074</td>
+		<td>1253</td>
+		<td>163</td>
+		<td>39</td>		
+	</tr>
+	<tr>
+		<td>Free</td>
+		<td>576</td>
+		<td>600</td>
+		<td>59</td>
+		<td>14</td>		
+	</tr>
+	<tr>
+		<td>Paid</td>
+		<td>6</td>
+		<td>5</td>
+		<td>6</td>
+		<td>1</td>		
+	</tr>
+</table>
 		<br>
         <p>p-value = 4.585e-06 < 0.05, so p-value is smaller than alpha and we reject the null hypothesis. We are 95% confident that wifi is related to price. Therefore, if business owners plan to include wifi in their restaurant, they can raise the price properly. </p></li>
        
@@ -831,6 +951,61 @@ p{
 		<p>Is wifi related to the rating?</p>
 		<p> H0: wifi and rating are independent VS H1: wifi and rating are dependent</p>
 		<br>
+		<table>
+	<caption><b>Contingency Tables for Rating and WiFi</b></caption>
+	<tr>
+	    <th></th>
+		<th colspan="9"> Rating Level</th>
+	</tr>
+	<tr>
+		<td>WiFi</td>
+		<td>1.0</td>
+		<td>1.5</td>
+		<td>2.0</td>
+		<td>2.5</td>
+		<td>3.0</td>
+		<td>3.5</td>
+		<td>4.0</td>
+		<td>4.5</td>
+		<td>5.0</td>
+	</tr>
+	<tr>
+		<td>No</td>
+		<td>0</td>
+		<td>14</td>
+		<td>38</td>
+		<td>113</td>
+		<td>344</td>
+		<td>785</td>
+		<td>917</td>
+		<td>294</td>
+		<td>45</td>
+	</tr>
+	<tr>
+		<td>Free</td>
+		<td>1</td>
+		<td>2</td>
+		<td>11</td>
+		<td>58</td>
+		<td>168</td>
+		<td>387</td>
+		<td>424</td>
+		<td>171</td>
+		<td>28</td>
+	</tr>
+	<tr>
+		<td>Paid</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+		<td>1</td>
+		<td>8</td>
+		<td>6</td>
+		<td>3</td>
+		<td>0</td>
+	</tr>
+</table>
 		<br>
 		<p>p-value = 0.4232 > 0.05, so p-value is larger than alpha and we cannot reject the null hypothesis. Hence, wifi isn’t associated with rating. Having wifi will not strengthen the goodwill of a restaurant.</p>
 
