@@ -1,13 +1,11 @@
 
 # coding: utf-8
 
-# In[9]:
 
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 
 
-# In[113]:
 from get_single_page import * # import function which is to extract single page's content
 import pandas as pd
 import requests
@@ -16,7 +14,6 @@ import requests_cache
 requests_cache.install_cache('yelp_cache')
 
 
-# In[3]:
 
 auth = Oauth1Authenticator(
     consumer_key = 'your_key',
@@ -28,7 +25,6 @@ auth = Oauth1Authenticator(
 client = Client(auth)
 
 
-# In[87]:
 
 def basic_info(search_loc):
     params = {
@@ -46,14 +42,12 @@ def basic_info(search_loc):
            'center_longitude': center_long, 'span_latitude': span_lat, 'span_longitude': span_long}
 
 
-# In[88]:
 #test the function
 # [basic_info('san jose, CA')] + [basic_info('davis, CA')]
 
 
 import lxml.html as lx
 
-# In[412]:
 def parse_html(search_term, search_loc, start_num = '0'):
     urlbase = 'https://www.yelp.com/search'
     dataparams = {'find_desc':search_term, 'l':search_loc, 'start':start_num }
